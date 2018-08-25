@@ -28,7 +28,7 @@
 #include "module.hpp"
 #include "unordered_map"
 
-class ofxDarkNightOsc : public Module, public ofBaseApp
+class ofxDarkKnightOsc : public Module, public ofBaseApp
 {
 private:
     int port;
