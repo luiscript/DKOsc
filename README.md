@@ -1,4 +1,4 @@
-## ofxDarkKnightMidi ##
+## ofxDarkKnightOsc ##
 
 **OSC controller module for ofxDarkKnight**
 
