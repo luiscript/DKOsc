@@ -94,8 +94,7 @@ void ofxDarkKnightOsc::onOscPortChange(ofxDatGuiTextInputEvent e)
 void ofxDarkKnightOsc::addOscSlider(string address, float * value)
 {
     oscMappings.insert({address, value});
-    gui->setTheme(this->getGuiTheme());
-    gui->setWidth(ofGetWidth()/5);
+    gui->setWidth(450);
     ofxDatGuiSlider * component = gui->addSlider(address, 0.0, 1.0);
     component->setPrecision(4);
     component->bind(*value);
