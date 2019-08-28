@@ -20,27 +20,6 @@
  SOFTWARE.
  */
 
-#ifndef ofxDarkKnightOsc_hpp
-#define ofxDarkKnightOsc_hpp
 
-#include "ofMain.h"
-#include "ofxOsc.h"
-#include "module.hpp"
-#include "unordered_map"
-
-class ofxDarkKnightOsc : public Module
-{
-private:
-    int port;
-    ofxOscReceiver oscIn;
-    unordered_map<string, float *> oscMappings;
-public:
-    void setup();
-    void update();
-    void draw();
-    void addModuleParameters();
-    void onOscPortChange(ofxDatGuiTextInputEvent);
-    void addOscSlider(string, float *);
-};
-
-#endif /* ofxDarkKnightOsc_hpp */
+#include "DarkKnightOscClient.hpp"
+#include "DarkKnightOscServer.hpp"
