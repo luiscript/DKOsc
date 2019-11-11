@@ -20,15 +20,15 @@
  SOFTWARE.
  */
 
-#include "DarkKnightOscClient.hpp"
+#include "DKOscClient.hpp"
 
 
-void DarkKnightOscClient::setup()
+void DKOscClient::setup()
 {
 
 }
 
-void DarkKnightOscClient::update()
+void DKOscClient::update()
 {
 	while (oscIn.hasWaitingMessages())
 	{
@@ -73,25 +73,25 @@ void DarkKnightOscClient::update()
 	}
 }
 
-void DarkKnightOscClient::draw()
+void DKOscClient::draw()
 {
 
 }
 
 
-void DarkKnightOscClient::addModuleParameters()
+void DKOscClient::addModuleParameters()
 {
 	ofxDatGuiTextInput* component = gui->addTextInput("Port");
-	component->onTextInputEvent(this, &DarkKnightOscClient::onOscPortChange);
+	component->onTextInputEvent(this, &DKOscClient::onOscPortChange);
 }
 
-void DarkKnightOscClient::onOscPortChange(ofxDatGuiTextInputEvent e)
+void DKOscClient::onOscPortChange(ofxDatGuiTextInputEvent e)
 {
 	port = ofToInt(e.text);
 	oscIn.setup(port);
 }
 
-void DarkKnightOscClient::addOscSlider(string address, float* value)
+void DKOscClient::addOscSlider(string address, float* value)
 {
 	oscMappings.insert({ address, value });
 	gui->setWidth(ofGetWidth()/5);  

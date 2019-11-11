@@ -1,16 +1,16 @@
 /*
- Copyright (C) 2018 Luis Fernando GarcÃ­a [http://luiscript.com]
- 
+ Copyright (C) 2019 Luis Fernando García [http://luiscript.com]
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in all
  copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -21,5 +21,26 @@
  */
 
 
-#include "DarkKnightOscClient.hpp"
-#include "DarkKnightOscServer.hpp"
+#ifndef DKOscClient_hpp
+#define DKOscClient_hpp
+
+#include "ofxOsc.h"
+#include "DKModule.hpp"
+#include "unordered_map"
+
+class DKOscClient : public DKModule
+{
+private:
+	int port;
+	ofxOscReceiver oscIn;
+	unordered_map<string, float*> oscMappings;
+public:
+	void setup();
+	void update();
+	void draw();
+	void addModuleParameters();
+	void onOscPortChange(ofxDatGuiTextInputEvent);
+	void addOscSlider(string, float*);
+};
+
+#endif /* DKOscClient_hpp */

@@ -20,10 +20,10 @@
  SOFTWARE.
  */
 
-#include "DarkKnightOscServer.hpp"
+#include "DKOscServer.hpp"
 
 
-void DarkKnightOscServer::setup()
+void DKOscServer::setup()
 {
 	newAddress = "newAddress";
 	min = 0.0;
@@ -31,7 +31,7 @@ void DarkKnightOscServer::setup()
 	precision = 2;
 }
 
-void DarkKnightOscServer::update()
+void DKOscServer::update()
 {
 	if (oscMessages.size() > 0)
 	{
@@ -55,78 +55,78 @@ void DarkKnightOscServer::update()
 	
 }
 
-void DarkKnightOscServer::draw()
+void DKOscServer::draw()
 {
 
 }
 
 
-void DarkKnightOscServer::addModuleParameters()
+void DKOscServer::addModuleParameters()
 {
 	ofxDatGuiTextInput* component = gui->addTextInput("Port");
 	component->setText(ofToString(port));
-	component->onTextInputEvent(this, &DarkKnightOscServer::onOscPortChange);
+	component->onTextInputEvent(this, &DKOscServer::onOscPortChange);
 
 	ofxDatGuiTextInput* componentHost = gui->addTextInput("HOST");
 	componentHost->setText(host);
-	componentHost->onTextInputEvent(this, &DarkKnightOscServer::onOscHostChange);
+	componentHost->onTextInputEvent(this, &DKOscServer::onOscHostChange);
 
 	addressList = gui->addFolder("ADDRESS LIST");
 
 	ofxDatGuiFolder* addParameter = gui->addFolder("ADD ADDRESS");
 	ofxDatGuiTextInput* addressName = addParameter->addTextInput("ADDRESS", newAddress);
-	addressName->onTextInputEvent(this, &DarkKnightOscServer::onAddressNameChange);
+	addressName->onTextInputEvent(this, &DKOscServer::onAddressNameChange);
 	
 	ofxDatGuiTextInput* addressMin = addParameter->addTextInput("Min value", "0");
-	addressMin->onTextInputEvent(this, &DarkKnightOscServer::onAddressMinChange);
+	addressMin->onTextInputEvent(this, &DKOscServer::onAddressMinChange);
 	
 	ofxDatGuiTextInput* addressMax = addParameter->addTextInput("Max value", "1");
-	addressMax->onTextInputEvent(this, &DarkKnightOscServer::onAddresMaxChange);
+	addressMax->onTextInputEvent(this, &DKOscServer::onAddresMaxChange);
 	
 	ofxDatGuiTextInput* addressPrecision = addParameter->addTextInput("Precision", "2");
-	addressPrecision->onTextInputEvent(this, &DarkKnightOscServer::onAddressPrecisionChange);
+	addressPrecision->onTextInputEvent(this, &DKOscServer::onAddressPrecisionChange);
 
 	ofxDatGuiButton* addParameterButton = addParameter->addButton("ADD");
 	addParameterButton->setLabelAlignment(ofxDatGuiAlignment::CENTER);
-	addParameterButton->onButtonEvent(this, &DarkKnightOscServer::onAddressButtonPressed);
+	addParameterButton->onButtonEvent(this, &DKOscServer::onAddressButtonPressed);
 
 }
 
-void DarkKnightOscServer::onOscPortChange(ofxDatGuiTextInputEvent e)
+void DKOscServer::onOscPortChange(ofxDatGuiTextInputEvent e)
 {
 	sender.clear();
 	port = ofToInt(e.text);
 	sender.setup(host, port);
 }
 
-void DarkKnightOscServer::onOscHostChange(ofxDatGuiTextInputEvent e)
+void DKOscServer::onOscHostChange(ofxDatGuiTextInputEvent e)
 {
 	sender.clear();
 	host = ofToString(e.text);
 	sender.setup(host, port);
 }
 
-void DarkKnightOscServer::onAddressNameChange(ofxDatGuiTextInputEvent e)
+void DKOscServer::onAddressNameChange(ofxDatGuiTextInputEvent e)
 {
 	newAddress = e.target->getText();
 }
 
-void DarkKnightOscServer::onAddressMinChange(ofxDatGuiTextInputEvent e)
+void DKOscServer::onAddressMinChange(ofxDatGuiTextInputEvent e)
 {
 	min = ofToFloat(e.target->getText());
 }
 
-void DarkKnightOscServer::onAddresMaxChange(ofxDatGuiTextInputEvent e)
+void DKOscServer::onAddresMaxChange(ofxDatGuiTextInputEvent e)
 {
 	max = ofToFloat(e.target->getText());
 }
 
-void DarkKnightOscServer::onAddressPrecisionChange(ofxDatGuiTextInputEvent e)
+void DKOscServer::onAddressPrecisionChange(ofxDatGuiTextInputEvent e)
 {
 	precision = ofToInt(e.target->getText());
 }
 
-void DarkKnightOscServer::onAddressButtonPressed(ofxDatGuiButtonEvent e)
+void DKOscServer::onAddressButtonPressed(ofxDatGuiButtonEvent e)
 {
 	if (newAddress != "")
 	{
@@ -154,7 +154,7 @@ void DarkKnightOscServer::onAddressButtonPressed(ofxDatGuiButtonEvent e)
 	}
 }
 
-void DarkKnightOscServer::addOscSlider(string address, float* value)
+void DKOscServer::addOscSlider(string address, float* value)
 {
 	/*oscMappings.insert({ address, value });
 	gui->setWidth(450);

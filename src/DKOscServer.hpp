@@ -21,11 +21,11 @@
  */
 
 
-#ifndef ofxDarkKnightOscServer_hpp
-#define ofxDarkKnightOscServer_hpp
+#ifndef DKOscServer_hpp
+#define DKOscServer_hpp
 
 #include "ofxOsc.h"
-#include "module.hpp"
+#include "DKModule.hpp"
 #include "unordered_map"
 
 struct DKoscParam
@@ -35,7 +35,7 @@ struct DKoscParam
 	bool changed;
 };
 
-class DarkKnightOscServer : public Module
+class DKOscServer : public DKModule
 {
 private:
 	int port;
@@ -46,7 +46,9 @@ private:
 	int precision;
 	ofxOscSender sender;
 	unordered_map<string, DKoscParam> oscMessages;
-	ofxDatGuiFolder* addressList;
+	ofxDatGuiFolder* params;
+    ofxDatGuiFolder* addressList;
+    
 public:
 	void setup();
 	void update();
@@ -62,4 +64,4 @@ public:
 	void addOscSlider(string, float*);
 };
 
-#endif /* ofxDarkKnightOscServer_hpp */
+#endif /* DKOscServer_hpp */
